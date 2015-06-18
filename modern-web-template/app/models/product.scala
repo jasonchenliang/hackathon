@@ -2,6 +2,7 @@ package models
 
 import java.util.Date
 
+/*comments*/
 case class Product(productId: Int,
                    name: String,
                    categoryId: Int,
