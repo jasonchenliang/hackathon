@@ -1,17 +1,19 @@
 package controllers
 
-import java.util.{Date, Calendar}
+import java.util.Calendar
 import javax.inject.Singleton
 
 import com.google.gson.Gson
 import models.Product
 import org.slf4j.{Logger, LoggerFactory}
-import play.api.libs.json.{JsValue, JsObject, Json}
+import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import play.api.libs.json.Json
 import play.api.mvc._
 import play.modules.reactivemongo.MongoController
 import play.modules.reactivemongo.json.collection.JSONCollection
 
 import scala.concurrent.Future
+
 
 /**
  * Created by eric.lin on 6/17/2015.
@@ -21,11 +23,10 @@ class ProductController extends Controller with MongoController {
 
   private final val logger: Logger = LoggerFactory.getLogger(classOf[ProductController])
 
-  def collection: JSONCollection = db.collection[JSONCollection]("products")
+  def collection: JSONCollection = db.collection[JSONCollection]("product")
 
-  //implicit val dateFormat = Json.format[Date]
   implicit val productFormat = Json.format[Product]
-  //implicit val productWrites = Json.writes[Product]
+
 
   def getProduct(productId: Int) = Action {
     request =>
@@ -42,23 +43,15 @@ class ProductController extends Controller with MongoController {
       Ok(gson.toJson(Array(product1, product2)))
   }
 
-  def createUser = Action.async(parse.json) {
-      request =>
-      /*
-       * request.body is a JsValue.
-       * There is an implicit Writes that turns this JsValue as a JsObject,
-       * so you can call insert() with this JsValue.
-       * (insert() takes a JsObject as parameter, or anything that can be
-       * turned into a JsObject using a Writes.)
-       */
-        request.body.validate[User].map {
-          user =>
-          // `user` is an instance of the case class `models.User`
-            collection.insert(user).map {
-              lastError =>
-                logger.debug(s"Successfully inserted with LastError: $lastError")
-                Created(s"User Created")
-            }
-        }.getOrElse(Future.successful(BadRequest("invalid json")))
-    }
+//  def createProduct = Action.async(parse.json) {
+//    request =>
+//      request.body.validate[Product].map {
+//        product =>
+//          collection.insert(product).map {
+//            lastError =>
+//              logger.debug(s"Successfully inserted with LastError: $lastError")
+//              Created(s"Product Created")
+//          }
+//      }.getOrElse(Future.successful(BadRequest("invalid json")))
+//  }
 }
