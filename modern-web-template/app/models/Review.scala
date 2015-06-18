@@ -1,8 +1,19 @@
 package models
 
-/**
- * Created by eric.lin on 6/17/2015.
- */
-class Review {
+import java.util.Date
 
-}
+case class Review(reviewId: Int,
+                  productId: Int,
+                  userId: Int,
+                  content: String,
+                  rating: Int,
+                  helpfulness: Int,
+                  createDate: Date)
+
+//object JsonFormats {
+//
+//  import play.api.libs.json.Json
+//
+//  // Generates Writes and Reads for Feed and User thanks to Json Macros
+//  implicit val userFormat = Json.format[Review]
+//}

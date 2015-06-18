@@ -12,10 +12,10 @@ case class Product(productId: Int,
                    attribute: Array[String],
                    createDate: Date)
 
-object JsonFormats {
-
-  import play.api.libs.json.Json
-
-  // Generates Writes and Reads for Feed and User thanks to Json Macros
-  implicit val userFormat = Json.format[Product]
-}
+//object JsonFormats {
+//
+//  import play.api.libs.json.Json
+//
+//  // Generates Writes and Reads for Feed and User thanks to Json Macros
+//  implicit val userFormat = Json.format[Product]
+//}
