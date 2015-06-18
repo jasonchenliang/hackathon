@@ -1,5 +1,7 @@
 package controllers
 
+import java.util.UUID
+
 import scala.concurrent._
 import duration._
 import org.specs2.mutable._
@@ -23,9 +25,11 @@ class CategoryIT extends Specification {
     "insert a valid json" in {
       running(FakeApplication()) {
         val request = FakeRequest.apply(POST, "/category").withJsonBody(Json.obj(
+          "cid" -> UUID.randomUUID().toString(),
           "parentId" -> "0",
-          "name" -> "Electronics",
-          "description" -> "TODO"))
+          "name" -> "Test",
+          "description" -> "TODO")
+          )
         val response = route(request)
         response.isDefined mustEqual true
         val result = Await.result(response.get, timeout)
@@ -33,20 +37,14 @@ class CategoryIT extends Specification {
       }
     }
 
-//    "fail inserting a non valid json" in {
-//      running(FakeApplication()) {
-//        val request = FakeRequest.apply(POST, "/user").withJsonBody(Json.obj(
-//          "firstName" -> 98,
-//          "lastName" -> "London",
-//          "age" -> 27))
-//        val response = route(request)
-//        response.isDefined mustEqual true
-//        val result = Await.result(response.get, timeout)
-//        contentAsString(response.get) mustEqual "invalid json"
-//        result.header.status mustEqual BAD_REQUEST
-//      }
-//    }
-
-
+    "get a list of category" in {
+      running(FakeApplication()) {
+        val request = FakeRequest.apply(GET, "/categories/0")
+        val response = route(request)
+        response.isDefined mustEqual true
+        val result = Await.result(response.get, timeout)
+        result.header.status must equalTo(OK)
+      }
+    }
   }
 }

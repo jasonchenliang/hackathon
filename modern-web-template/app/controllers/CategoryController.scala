@@ -24,7 +24,6 @@ class CategoryController extends Controller with MongoController {
 
   implicit val categoryFormat = Json.format[Category]
 
-
   def createCategory = Action.async(parse.json) {
     request =>
       request.body.validate[Category].map {
@@ -38,11 +37,9 @@ class CategoryController extends Controller with MongoController {
   }
 
 //  def findCategories = Action.async {
-//    // let's do our query
+//    val query = Json.obj("parentId" -> "0")
 //    val cursor: Cursor[Category] = collection.
-//      find().
-//      // sort them by creation date
-//      sort(Json.obj("name" -> -1)).
+//      find(query).
 //      // perform the query and get a cursor of JsObject
 //      cursor[Category]
 //
@@ -59,4 +56,26 @@ class CategoryController extends Controller with MongoController {
 //        Ok(categories(0))
 //    }
 //  }
+
+  def findCategories(parentId: String) = Action.async {
+    val query = Json.obj("parentId" -> parentId)
+    val cursor: Cursor[Category] = collection.
+      find(query).
+      // perform the query and get a cursor of JsObject
+      cursor[Category]
+
+    // gather all the JsObjects in a list
+    val futureCategoriesList: Future[List[Category]] = cursor.collect[List]()
+
+    // transform the list into a JsArray
+    val futureCategoriesJsonArray: Future[JsArray] = futureCategoriesList.map { categories =>
+      Json.arr(categories)
+    }
+    // everything's ok! Let's reply with the array
+    futureCategoriesJsonArray.map {
+      categories =>
+        Ok(categories(0))
+    }
+  }
+
 }
