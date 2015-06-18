@@ -1,9 +1,9 @@
-<div ng-controller="mainCtrl as main">
+<div ng-controller="MainCtrl as main">
     <table>
         <tr id="popularity-row">
             <td ng-repeat="item in main.hotItems">
                 <p>{{item.name}}</p>
-                <img src="{{item.imgsrc}}" />
+                <img ng-src="{{item.imageUrl}}" />
                 <p>Price: {{item.price | currency}}</p>
                 <p>Description: {{item.description}}</p>
             </td>
@@ -11,7 +11,7 @@
         <tr id="new-row">
             <td ng-repeat="item in main.newItems">
                 <p>{{item.name}}</p>
-                <img src="{{item.imgsrc}}" />
+                <img ng-src="{{item.imageUrl}}" />
                 <p>Price: {{item.price | currency}}</p>
                 <p>Description: {{item.description}}</p>
             </td>

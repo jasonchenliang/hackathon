@@ -15,7 +15,8 @@ POST        /user                             @controllers.Users.createUser
 PUT         /user/:firstName/:lastName        @controllers.Users.updateUser(firstName: String, lastName: String)
 
 # Category management API
-#GET         /categories                       @controllers.Category.findCategories
+GET         /categories/:parentId             @controllers.CategoryController.findCategories(parentId: String)
+#GET         /categories                       @controllers.CategoryController.findCategories
 POST        /category                         @controllers.CategoryController.createCategory
 
 GET    /getProduct/:productId                      @controllers.ProductController.getProduct(productId: Int)
