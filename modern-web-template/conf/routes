@@ -20,5 +20,8 @@ POST        /category                         @controllers.CategoryController.cr
 GET    /getProduct/:productId                      @controllers.ProductController.getProduct(productId: Int)
 GET    /search/:sortBy/:keyword/:categoryId        @controllers.ProductController.search(sortBy: String, keyword: String, categoryId:Int)
 
+# Product query API
+GET     /products?listing=:listing          @controllers.ProductController.getProductList(listing: String)
+
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file                     controllers.Assets.at(path="/public", file)
