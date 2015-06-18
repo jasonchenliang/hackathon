@@ -18,6 +18,9 @@ angular.module('myApp.routeConfig', ['ngRoute'])
             .when('/', {
                 templateUrl: '/assets/partials/view.html'
             })
+            .when('/login', {
+                templateUrl: '/assets/partials/login.html'
+            })
             .when('/users/create', {
                 templateUrl: '/assets/partials/create.html'
             })
