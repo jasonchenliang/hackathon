@@ -1,6 +1,5 @@
 
-angular.module('main', [])
-.controller('mainController', function(#scope, $http) {
+var MainCtrl = function($scope, $http) {
   $http.get("/products?listing=hot")
       .success(function (response) {
         $scope.hotItems = response;
@@ -9,4 +8,6 @@ angular.module('main', [])
       .success(function (response) {
         $scope.newItems = response;
       });
-});
+};
+
+controllersModule.controller('MainCtrl', MainCtrl)
