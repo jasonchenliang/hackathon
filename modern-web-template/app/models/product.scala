@@ -6,13 +6,15 @@ import java.util.Date
 case class Product(productId: Int,
                    name: String,
                    categoryId: Int,
-                   price: BigDecimal,
+                   price: Double,
                    description: String,
                    qty: Int,
                    attribute: Array[String],
+                   imageUrl: String,
                    createDate: Date)
 
-//object JsonFormats {
+
+//object ProductJsonFormats {
 //
 //  import play.api.libs.json.Json
 //
