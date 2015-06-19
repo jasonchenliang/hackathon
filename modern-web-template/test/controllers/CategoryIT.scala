@@ -26,8 +26,8 @@ class CategoryIT extends Specification {
       running(FakeApplication()) {
         val request = FakeRequest.apply(POST, "/category").withJsonBody(Json.obj(
           "cid" -> UUID.randomUUID().toString(),
-          "parentId" -> "0",
-          "name" -> "Test",
+          "parentId" -> "2657ccba-a7c4-4934-931b-86f86284044a",
+          "name" -> "Test-1",
           "description" -> "TODO")
           )
         val response = route(request)
@@ -39,7 +39,7 @@ class CategoryIT extends Specification {
 
     "get a list of category" in {
       running(FakeApplication()) {
-        val request = FakeRequest.apply(GET, "/categories/0")
+        val request = FakeRequest.apply(GET, "/getCategories/0")
         val response = route(request)
         response.isDefined mustEqual true
         val result = Await.result(response.get, timeout)
