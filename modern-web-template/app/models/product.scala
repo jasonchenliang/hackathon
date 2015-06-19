@@ -3,13 +3,13 @@ package models
 import java.util.Date
 
 /*comments*/
-case class Product(productId: Int,
+case class Product(productId: String,
                    name: String,
-                   categoryId: Int,
+                   categoryId: String,
                    price: Double,
                    description: String,
                    qty: Int,
-                   attribute: Array[String],
+                   attribute: String,
                    imageUrl: String,
                    createDate: Date)
 
