@@ -73,7 +73,7 @@ class ProductController extends Controller with MongoController {
         cursor = collection.find(Json.obj()).sort(Json.obj("createDate" -> -1)).cursor[Product]
       }
       else if ("sold".equals(sortBy)) {
-
+        cursor = collection.find(Json.obj()).sort(Json.obj("createDate" -> -1)).cursor[Product] //TODO
       }
       val futureList: Future[List[Product]] = cursor.collect[List]()
       val futureJsonArray: Future[JsArray] = futureList.map { products =>
