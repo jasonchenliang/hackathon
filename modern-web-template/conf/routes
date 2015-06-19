@@ -19,8 +19,9 @@ GET         /categories/:parentId             @controllers.CategoryController.fi
 #GET         /categories                       @controllers.CategoryController.findCategories
 POST        /category                         @controllers.CategoryController.createCategory
 
-GET    /getProduct/:productId                      @controllers.ProductController.getProduct(productId: Int)
-GET    /search/:sortBy/:keyword/:categoryId        @controllers.ProductController.search(sortBy: String, keyword: String, categoryId:Int)
+GET    /getProduct/:productId                      @controllers.ProductController.getProduct(productId: String)
+GET    /search/:sortBy/:keyword/:categoryId        @controllers.ProductController.search(sortBy: String, keyword: String, categoryId: String)
+POST   /product                                    @controllers.ProductController.createProduct
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file                     controllers.Assets.at(path="/public", file)

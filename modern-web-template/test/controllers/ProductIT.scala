@@ -1,5 +1,6 @@
 package controllers
 
+import java.util.{UUID, Calendar, Date}
 import java.util.concurrent.TimeUnit
 
 import models.User
@@ -19,67 +20,50 @@ class ProductIT extends Specification {
 
   "Products" should {
 
-//    "render the index page" in {
+
+//    "fail updating a non valid json" in {
 //      running(FakeApplication()) {
-//        val home = route(FakeRequest(GET, "/getProduct/1")).get
-//        status(home) must equalTo(OK)
-//                //contentType(home) must beSome.which(_ == "text/html")
-//      }
-//    }
-
-    "fail updating a non valid json" in {
-      running(FakeApplication()) {
-        val request = FakeRequest.apply(GET, "/getProduct/1")
-        val response = route(request)
-        response.isDefined mustEqual true
-        val result = Await.result(response.get, timeout)
-        contentAsString(response.get) mustEqual "invalid json"
-        //result.header.status mustEqual BAD_REQUEST
-
-      }
-    }
-
-//    "fail inserting a non valid json" in {
-//      running(FakeApplication()) {
-//        val request = FakeRequest.apply(POST, "/user").withJsonBody(Json.obj(
-//          "firstName" -> 98,
-//          "lastName" -> "London",
-//          "age" -> 27))
+//        val request = FakeRequest.apply(GET, "/getProduct/1")
 //        val response = route(request)
 //        response.isDefined mustEqual true
 //        val result = Await.result(response.get, timeout)
 //        contentAsString(response.get) mustEqual "invalid json"
-//        result.header.status mustEqual BAD_REQUEST
+//        //result.header.status mustEqual BAD_REQUEST
+//
 //      }
 //    }
-//
-//    "update a valid json" in {
+
+//    "insert a valid json" in {
 //      running(FakeApplication()) {
-//        val request = FakeRequest.apply(PUT, "/user/Jack/London").withJsonBody(Json.obj(
-//          "firstName" -> "Jack",
-//          "lastName" -> "London",
-//          "age" -> 27,
-//          "active" -> true))
+//        val request = FakeRequest.apply(POST, "/product").withJsonBody(Json.obj(
+//          "productId" -> UUID.randomUUID().toString(),
+//          "name" -> "Product B",
+//          "categoryId" -> "3",
+//          "price" -> 11.50,
+//          "description" -> "Blah Blah description",
+//          "qty" -> 5,
+//          "attribute" -> "attr1,attr2",
+//          "imageUrl" -> "https://www.google.ca/images/srpr/logo11w.png",
+//          "createDate" -> Calendar.getInstance().getTime()
+//        ))
 //        val response = route(request)
 //        response.isDefined mustEqual true
 //        val result = Await.result(response.get, timeout)
 //        result.header.status must equalTo(CREATED)
 //      }
 //    }
-//
-//    "fail updating a non valid json" in {
-//      running(FakeApplication()) {
-//        val request = FakeRequest.apply(PUT, "/user/Jack/London").withJsonBody(Json.obj(
-//          "firstName" -> "Jack",
-//          "lastName" -> "London",
-//          "age" -> 27))
-//        val response = route(request)
-//        response.isDefined mustEqual true
-//        val result = Await.result(response.get, timeout)
-//        contentAsString(response.get) mustEqual "invalid json"
-//        result.header.status mustEqual BAD_REQUEST
-//      }
-//    }
+
+    "fail updating a non valid json" in {
+      running(FakeApplication()) {
+        val request = FakeRequest.apply(GET, "/search/keyword/A/0")
+        val response = route(request)
+        response.isDefined mustEqual true
+        val result = Await.result(response.get, timeout)
+        //contentAsString(response.get) mustEqual "invalid json"
+        result.header.status mustEqual OK
+
+      }
+    }
 
   }
 
