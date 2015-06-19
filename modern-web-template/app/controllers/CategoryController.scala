@@ -36,28 +36,28 @@ class CategoryController extends Controller with MongoController {
       }.getOrElse(Future.successful(BadRequest("invalid json")))
   }
 
-//  def findCategories = Action.async {
-//    val query = Json.obj("parentId" -> "0")
-//    val cursor: Cursor[Category] = collection.
-//      find(query).
-//      // perform the query and get a cursor of JsObject
-//      cursor[Category]
-//
-//    // gather all the JsObjects in a list
-//    val futureCategoriesList: Future[List[Category]] = cursor.collect[List]()
-//
-//    // transform the list into a JsArray
-//    val futureCategoriesJsonArray: Future[JsArray] = futureCategoriesList.map { categories =>
-//      Json.arr(categories)
-//    }
-//    // everything's ok! Let's reply with the array
-//    futureCategoriesJsonArray.map {
-//      categories =>
-//        Ok(categories(0))
-//    }
-//  }
+  def getAllCategories = Action.async {
+    val query = Json.obj()
+    val cursor: Cursor[Category] = collection.
+      find(query).
+      // perform the query and get a cursor of JsObject
+      cursor[Category]
 
-  def findCategories(parentId: String) = Action.async {
+    // gather all the JsObjects in a list
+    val futureCategoriesList: Future[List[Category]] = cursor.collect[List]()
+
+    // transform the list into a JsArray
+    val futureCategoriesJsonArray: Future[JsArray] = futureCategoriesList.map { categories =>
+      Json.arr(categories)
+    }
+    // everything's ok! Let's reply with the array
+    futureCategoriesJsonArray.map {
+      categories =>
+        Ok(categories(0))
+    }
+  }
+
+  def getCategories(parentId: String) = Action.async {
     val query = Json.obj("parentId" -> parentId)
     val cursor: Cursor[Category] = collection.
       find(query).
