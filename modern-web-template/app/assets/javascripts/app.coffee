@@ -29,7 +29,7 @@ angular.module('myApp.routeConfig', ['ngRoute'])
             .when('/users/edit/:firstName/:lastName', {
                 templateUrl: '/assets/partials/update.html'
             })
-            .otherwise({redirectTo: '/'})
+            .otherwise({redirectTo: '/login'})
     .config ($locationProvider) ->
         $locationProvider.html5Mode({
             enabled: true,
