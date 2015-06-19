@@ -18,8 +18,8 @@ class LoginController
           alert "Login failed."
           @reset()
         else
-          alert "Login success."
           @user = data[0]
+          window.location.href = '/'
     (error)=>
       alert "Error - " + error
       @reset()
