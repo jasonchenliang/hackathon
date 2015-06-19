@@ -1,5 +1,7 @@
 package controllers
 
+import java.util.UUID
+
 import play.modules.reactivemongo.MongoController
 import play.modules.reactivemongo.json.collection.JSONCollection
 import scala.concurrent.Future
@@ -93,5 +95,24 @@ class Users extends Controller with MongoController {
         Ok(users(0))
     }
   }
+
+  def login(userId: String, password: String) = Action.async {
+      val cursor: Cursor[User] = collection.
+        find(Json.obj("userId" -> userId, "password" -> password)).
+        cursor[User]
+
+      // gather all the JsObjects in a list
+      val futureUsersList: Future[List[User]] = cursor.collect[List]()
+
+      // transform the list into a JsArray
+      val futurePersonsJsonArray: Future[JsArray] = futureUsersList.map { users =>
+        Json.arr(users)
+      }
+      // everything's ok! Let's reply with the array
+      futurePersonsJsonArray.map {
+        users =>
+          Ok(users(0))
+      }
+    }
 
 }
