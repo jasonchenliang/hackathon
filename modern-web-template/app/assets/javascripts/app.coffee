@@ -29,6 +29,9 @@ angular.module('myApp.routeConfig', ['ngRoute'])
             .when('/users/edit/:firstName/:lastName', {
                 templateUrl: '/assets/partials/update.html'
             })
+            .when('/product/:productId', {
+                templateUrl: '/assets/partials/product.html'
+            })
             .otherwise({redirectTo: '/login'})
     .config ($locationProvider) ->
         $locationProvider.html5Mode({

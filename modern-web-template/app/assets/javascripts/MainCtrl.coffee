@@ -1,7 +1,7 @@
 class MainCtrl
 
   constructor: (@$log, @ProductService) ->
-    @$log.debug "constructing UserController"
+    @$log.debug "constructing MainController"
     @hotItems = []
     @newItems = []
     @getHotItems()
