@@ -1,4 +1,3 @@
-
 class ProductService
 
   @headers = {'Accept': 'application/json', 'Content-Type': 'application/json'}
@@ -36,5 +35,15 @@ class ProductService
       deferred.reject(data)
     )
     deferred.promise
+
+  getProduct: (id) ->
+    @$log.debug "getProduct()"
+    deferred = @$q.defer()
+
+    @$http.get("/getProduct/#{id}")
+    .success((data, status, headers) =>
+      @$log.info("Successfully retrieved new items - status #{status}")
+      deferred.resolve(data)
+    )
 
 servicesModule.service('ProductService', ProductService)
