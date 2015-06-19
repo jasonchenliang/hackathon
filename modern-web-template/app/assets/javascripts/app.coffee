@@ -1,4 +1,3 @@
-
 dependencies = [
     'ngRoute',
     'ui.bootstrap',
@@ -21,13 +20,16 @@ angular.module('myApp.routeConfig', ['ngRoute'])
             .when('/login', {
                 templateUrl: '/assets/partials/login.html'
             })
+            .when('/category/:id)', {
+                templateUrl: '/assets/partials/category.html'
+            })
             .when('/users/create', {
                 templateUrl: '/assets/partials/create.html'
             })
             .when('/users/edit/:firstName/:lastName', {
                 templateUrl: '/assets/partials/update.html'
             })
-            .otherwise({redirectTo: '/'})
+            .otherwise({redirectTo: '/login'})
     .config ($locationProvider) ->
         $locationProvider.html5Mode({
             enabled: true,
