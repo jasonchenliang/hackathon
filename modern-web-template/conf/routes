@@ -16,9 +16,9 @@ PUT         /user/:firstName/:lastName        @controllers.Users.updateUser(firs
 GET         /login/:userId/:password          @controllers.Users.login(userId: String, password: String)
 
 # Category management API
-GET         /categories/:parentId             @controllers.CategoryController.findCategories(parentId: String)
-#GET         /categories                       @controllers.CategoryController.findCategories
-POST        /category                         @controllers.CategoryController.createCategory
+GET         /getCategories/:parentId        @controllers.CategoryController.getCategories(parentId: String)
+GET         /getAllCategories               @controllers.CategoryController.getAllCategories
+POST        /category                       @controllers.CategoryController.createCategory
 
 # Product management API
 GET    /getProduct/:productId                      @controllers.ProductController.getProduct(productId: String)

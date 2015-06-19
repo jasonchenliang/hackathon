@@ -70,7 +70,7 @@ class ProductController extends Controller with MongoController {
         cursor = collection.find(Json.obj()).sort(Json.obj("createDate" -> -1)).cursor[Product]
       }
       else if ("hot".equals(sortBy)) {
-
+        cursor = collection.find(Json.obj()).sort(Json.obj("createDate" -> -1)).cursor[Product]
       }
       else if ("sold".equals(sortBy)) {
 
