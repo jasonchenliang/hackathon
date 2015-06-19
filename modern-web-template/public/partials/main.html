@@ -1,20 +1,25 @@
 <div ng-controller="MainCtrl as main">
-    <table>
-        <tr id="popularity-row">
-            <td ng-repeat="item in main.hotItems">
+    <h2>Hot Items:</h2>
+    <div class="main-container">
+        <div class="row">
+            <div ng-repeat="item in main.hotItems" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                 <p>{{item.name}}</p>
                 <img ng-src="{{item.imageUrl}}" />
                 <p>Price: {{item.price | currency}}</p>
                 <p>Description: {{item.description}}</p>
-            </td>
-        </tr>
-        <tr id="new-row">
-            <td ng-repeat="item in main.newItems">
+            </div>
+        </div>
+    </div>
+    <hr>
+    <h2>New Items:</h2>
+    <div class="main-container">
+        <div class="row">
+            <div ng-repeat="item in main.newItems" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                 <p>{{item.name}}</p>
                 <img ng-src="{{item.imageUrl}}" />
                 <p>Price: {{item.price | currency}}</p>
                 <p>Description: {{item.description}}</p>
-            </td>
-        </tr>
-    </table>
+            </div>
+        </div>
+    </div>
 </div>
