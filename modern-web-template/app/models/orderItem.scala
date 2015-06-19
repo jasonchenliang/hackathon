@@ -1,6 +1,5 @@
 package models
 
-case class OrderItem(orderId: String,
-                     productId: String,
+case class OrderItem(productId: String,
                      qty: Int,
                      price: Double)
