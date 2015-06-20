@@ -7,6 +7,21 @@ class CategoryService
   constructor: (@$log, @$http, @$q) ->
     @$log.debug "constructing ProductService"
 
+  category: (cid) ->
+    @$log.debug "category()"
+    deferred = @$q.defer()
+
+    @$http.get("/category/#{cid}")
+    .success((data, status, headers) =>
+      @$log.info("Successfully retrieved category - status #{status}")
+      deferred.resolve(data)
+    )
+    .error((data, status, headers) =>
+      @$log.error("Failed to retrieve category - status #{status}")
+      deferred.reject(data)
+    )
+    deferred.promise
+
   categoryList: () ->
     @$log.debug "categoryList()"
     deferred = @$q.defer()
