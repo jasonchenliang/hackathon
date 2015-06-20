@@ -20,8 +20,17 @@ angular.module('myApp.routeConfig', ['ngRoute'])
             .when('/login', {
                 templateUrl: '/assets/partials/login.html'
             })
-            .when('/category/:id)', {
+            .when('/search/:category/:keyword', {
+                templateUrl: '/assets/partials/search.html'
+            })
+            .when('/search/:keyword', {
+                templateUrl: '/assets/partials/search.html'
+            })
+            .when('/category/:cid', {
                 templateUrl: '/assets/partials/category.html'
+            })
+            .when('/product/:productId', {
+                templateUrl: '/assets/partials/product.html'
             })
             .when('/users/create', {
                 templateUrl: '/assets/partials/create.html'
@@ -29,10 +38,7 @@ angular.module('myApp.routeConfig', ['ngRoute'])
             .when('/users/edit/:firstName/:lastName', {
                 templateUrl: '/assets/partials/update.html'
             })
-            .when('/product/:productId', {
-                templateUrl: '/assets/partials/product.html'
-            })
-            .otherwise({redirectTo: '/login'})
+            .otherwise({redirectTo: '/category/:cid'})
     .config ($locationProvider) ->
         $locationProvider.html5Mode({
             enabled: true,

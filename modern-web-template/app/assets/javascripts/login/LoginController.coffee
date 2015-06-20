@@ -1,6 +1,6 @@
 class LoginController
 
-  constructor: (@$log, @LoginService) ->
+  constructor: (@$log, @LoginService, @$scope, @$controller) ->
     @account = ""
     @password = ""
     @user = {}

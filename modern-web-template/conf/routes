@@ -16,13 +16,14 @@ PUT         /user/:firstName/:lastName                            @controllers.U
 GET         /login/:userId/:password                              @controllers.Users.login(userId: String, password: String)
 
 # Category management API
+GET         /category/:cid                                        @controllers.CategoryController.getCategory(cid: String)
 GET         /getCategories/:parentId                              @controllers.CategoryController.getCategories(parentId: String)
 GET         /getAllCategories                                     @controllers.CategoryController.getAllCategories
 POST        /category                                             @controllers.CategoryController.createCategory
 
 # Product management API
 GET         /getProduct/:productId                                @controllers.ProductController.getProduct(productId: String)
-GET         /search/:sortBy/:keyword/:categoryId                  @controllers.ProductController.search(sortBy: String, keyword: String, categoryId: String)
+GET         /search/:sortBy/:categoryId/:keyword                  @controllers.ProductController.search(sortBy: String, keyword: String, categoryId: String)
 POST        /product                                              @controllers.ProductController.createProduct
 
 # Review management API

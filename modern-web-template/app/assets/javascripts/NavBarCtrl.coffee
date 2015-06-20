@@ -1,12 +1,14 @@
-
 class NavBarCtrl
 
   constructor: (@$log, @CategoryService) ->
-    @$log.debug "constructing UserController"
+    @$log.debug "constructing NavBar Controller"
     @categories = []
     @cart = []
-    @user = {}
     @getCategories()
+
+  verifyUser: () ->
+    if (!@user)
+      window.location.href = '/login'
 
   getCategories: () ->
     @$log.debug "getCategories()"

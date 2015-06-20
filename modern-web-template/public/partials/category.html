@@ -1,0 +1,15 @@
+<div ng-controller="CategoryCtrl as ctg">
+    <h2>Products in Category: {{ctg.category.name}}</h2>
+    <table class="table table-hover">
+        <tr ng-repeat="item in ctg.items" class="row">
+            <td class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <img ng-src="{{item.imageUrl}}" />
+            </td>
+            <td class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <p style="font-weight: bold;"><a ng-href="/#/product/{{item.productId}}">{{item.name}}</a></p>
+                <p>Price: {{item.price | currency}}</p>
+                <p>Description: {{item.description}}</p>
+            </td>
+        </tr>
+    </table>
+</div>
