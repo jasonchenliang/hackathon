@@ -38,12 +38,20 @@ angular.module('myApp.routeConfig', ['ngRoute'])
             .when('/users/edit/:firstName/:lastName', {
                 templateUrl: '/assets/partials/update.html'
             })
-            .otherwise({redirectTo: '/category/:cid'})
+            .otherwise({redirectTo: '/login'})
     .config ($locationProvider) ->
         $locationProvider.html5Mode({
             enabled: true,
             requireBase: false
         })
+    .run ($rootScope, $location, $log) ->
+      $rootScope.$on('$locationChangeStart', ()->
+        $log.debug "chnagestar"
+        $log.debug $rootScope.currentUser
+
+        if $rootScope.currentUser in [undefined, {}] then $location.path('/login')
+        )
+
 
 @commonModule = angular.module('myApp.common', [])
 @controllersModule = angular.module('myApp.controllers', [])

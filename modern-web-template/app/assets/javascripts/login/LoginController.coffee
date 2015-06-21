@@ -1,6 +1,6 @@
 class LoginController
 
-  constructor: (@$log, @LoginService, @$scope, @$controller) ->
+  constructor: (@$log, @LoginService, @$scope, @$location) ->
     @account = ""
     @password = ""
     @user = {}
@@ -19,11 +19,17 @@ class LoginController
           @reset()
         else
           @user = data[0]
-          window.location.href = '/'
+          @LoginService.setCredentials(@user)
+          @$location.path('/')
     (error)=>
       alert "Error - " + error
       @reset()
     )
+
+  logout: () ->
+      @$log.debug "logut"
+      @LoginService.clearCredentials()
+      @$location.path("/login")
 
 
 controllersModule.controller('LoginController', LoginController)
