@@ -1,6 +1,5 @@
 package controllers
 
-import models.Order
 import org.slf4j.{LoggerFactory, Logger}
 import play.api.libs.json.{JsArray, Json}
 import play.api.mvc.{Action, Controller}
