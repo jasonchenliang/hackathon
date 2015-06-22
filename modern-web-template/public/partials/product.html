@@ -1,0 +1,31 @@
+<div class="container-block" ng-controller="ProductCtrl as ctrl">
+    <div class="product-container">
+        <table class="product-description">
+            <tr>
+                <td style="text-align:right;">
+                    <img style="width:60%" src="{{ctrl.product.data[0].imageUrl}}">
+                </td>
+                <td class="display-center" style="word-wrap: break-word">
+                    <h2>{{ctrl.product.data[0].name}}</h2>
+                    {{ctrl.product.data[0].description}}<br><br>
+                    <h3>{{ctrl.product.data[0].price | currency}}<br><br></h3>
+                    <h4>{{ctrl.product.data[0].qty}} left in stock</h4>
+                </td>
+                <td class="display-center">
+                    <button class="button-addToCart">Add To Cart</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br><br><br>
+    <div>
+        <table class="product-details">
+            <tr ng-repeat="attribute in ctrl.product.attribute">
+                <td>{{attribute.key}}</td>
+                <td>{{attribute.value}}</td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+

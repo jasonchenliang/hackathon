@@ -78,4 +78,18 @@ class CategoryController extends Controller with MongoController {
     }
   }
 
+  def getCategory(cid: String) = Action.async {
+    request =>
+      val cursor: Cursor[Category] = collection.find(Json.obj("cid" -> cid)).cursor[Category]
+      val futureList: Future[List[Category]] = cursor.collect[List]()
+      val futureJsonArray: Future[JsArray] = futureList.map { categories =>
+        Json.arr(categories)
+      }
+
+      futureJsonArray.map {
+        categories =>
+          Ok(categories(0))
+      }
+  }
+
 }

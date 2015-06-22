@@ -1,10 +1,70 @@
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
 body {
-    padding-bottom: 30px;
-    min-width: 970px;
+  padding-bottom: 30px;
+  min-width: 970px;
 }
 
 footer {
-    text-align: center;
+  text-align: center;
 }
+
+.main-container{
+  width:100%;
+  min-height: 100%;
+  height: auto;
+}
+div.main-container > .row {
+  overflow-x:scroll;
+  overflow-y:hidden;
+  white-space:nowrap;
+}
+div.main-container > .row [class*="col-lg"], #main-content > .row [class*="col-md"], #main-content > .row [class*="col-sm"] {
+  float:none;
+  display:inline-block;
+  white-space:normal;
+  vertical-align:top;
+}    text-align: center;
+}
+
+.product-container{
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.product-description{
+    color: rgb(255, 255, 255);
+    table-layout:fixed;
+    border-collapse: separate;
+    border-spacing: 100px;
+    width:100%;
+}
+
+.product-details{
+    border-collapse: separate;
+    border-spacing: 100px;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.container-block{
+    height: 500px;
+    background: rgb(48, 48, 48);
+}
+
+.display-center {
+    text-align: center;
+    color: rgb(255,255,255);
+}
+
+.image-container {
+    position: absolute;
+    margin-left: 15%;
+    top: 40%;
+    height: auto;
+}
+
+.button-addToCart {
+    background: rgb(28, 184, 65);
+}
+
