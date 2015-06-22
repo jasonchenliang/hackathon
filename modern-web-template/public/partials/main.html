@@ -3,7 +3,7 @@
     <div class="main-container">
         <div class="row">
             <div ng-repeat="item in main.hotItems" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                <a ng-href="/#/product/{{item.productId}}">{{item.name}}</a>
+                <p style="font-weight: bold;"><a ng-href="/#/product/{{item.productId}}">{{item.name}}</a></p>
                 <img ng-src="{{item.imageUrl}}" />
                 <p>Price: {{item.price | currency}}</p>
                 <p>Description: {{item.description}}</p>
@@ -15,11 +15,15 @@
     <div class="main-container">
         <div class="row">
             <div ng-repeat="item in main.newItems" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                <a ng-href="/#/product/{{item.productId}}">{{item.name}}</a>
+                <p style="font-weight: bold;"><a ng-href="/#/product/{{item.productId}}">{{item.name}}</a></p>
                 <img ng-src="{{item.imageUrl}}" />
                 <p>Price: {{item.price | currency}}</p>
                 <p>Description: {{item.description}}</p>
             </div>
         </div>
     </div>
+</div>
+
+<div ng-controller="LoginController as lc">
+  <button class="btn btn-danger" ng-click="lc.logout()">Logout</button>
 </div>

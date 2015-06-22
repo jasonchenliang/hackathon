@@ -7,8 +7,7 @@
 # Single endpoint for serving AngularJS
 GET         /                                                     @controllers.Application.index
 GET         /randomUUID                                           @controllers.Application.randomUUID
-GET         /login                                                @controllers.Application.login
-
+GET         /login                                                @controllers.Application.index
 # User management API
 GET         /users                                                @controllers.Users.findUsers
 POST        /user                                                 @controllers.Users.createUser
@@ -16,13 +15,14 @@ PUT         /user/:firstName/:lastName                            @controllers.U
 GET         /login/:userId/:password                              @controllers.Users.login(userId: String, password: String)
 
 # Category management API
+GET         /category/:cid                                        @controllers.CategoryController.getCategory(cid: String)
 GET         /getCategories/:parentId                              @controllers.CategoryController.getCategories(parentId: String)
 GET         /getAllCategories                                     @controllers.CategoryController.getAllCategories
 POST        /category                                             @controllers.CategoryController.createCategory
 
 # Product management API
 GET         /getProduct/:productId                                @controllers.ProductController.getProduct(productId: String)
-GET         /search/:sortBy/:keyword/:categoryId                  @controllers.ProductController.search(sortBy: String, keyword: String, categoryId: String)
+GET         /search/:sortBy/:categoryId/:keyword                  @controllers.ProductController.search(sortBy: String, keyword: String, categoryId: String)
 POST        /product                                              @controllers.ProductController.createProduct
 
 # Review management API
@@ -31,6 +31,8 @@ POST        /addReview/:productId/:userId/:content/:rating        @controllers.R
 
 # Order management API
 POST        /order                                                @controllers.OrderController.createOrder
+GET         /getOrder/:userId                                     @controllers.OrderController.getOrder(userId: String)
+#POST        /getOrder                                             @controllers.OrderController.getOrder
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file                                         controllers.Assets.at(path="/public", file)
