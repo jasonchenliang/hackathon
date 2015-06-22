@@ -23,9 +23,6 @@ angular.module('myApp.routeConfig', ['ngRoute'])
             .when('/search/:category/:keyword', {
                 templateUrl: '/assets/partials/search.html'
             })
-            .when('/search/:keyword', {
-                templateUrl: '/assets/partials/search.html'
-            })
             .when('/category/:cid', {
                 templateUrl: '/assets/partials/category.html'
             })

@@ -9,6 +9,10 @@ footer {
   text-align: center;
 }
 
+.navbar-form input.ng-invalid.ng-touched {
+  box-shadow: 0 0 2px 1px red;
+}
+
 .main-container{
   width:100%;
   min-height: 100%;
@@ -24,7 +28,7 @@ div.main-container > .row [class*="col-lg"], #main-content > .row [class*="col-m
   display:inline-block;
   white-space:normal;
   vertical-align:top;
-}    text-align: center;
+  text-align: center;
 }
 
 .product-container{

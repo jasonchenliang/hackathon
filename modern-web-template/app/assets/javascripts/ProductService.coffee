@@ -65,7 +65,7 @@ class ProductService
     @$log.debug "queryCategoryItems()"
     deferred = @$q.defer()
 
-    @$http.get("/search/hot/#{cid}/#{keyword}")
+    @$http.get("/search/keyword/#{cid}/#{keyword}")
     .success((data, status, headers) =>
       @$log.info("Successfully retrieved query in category items - status #{status}")
       deferred.resolve(data)
@@ -80,7 +80,7 @@ class ProductService
     @$log.debug "queryItems()"
     deferred = @$q.defer()
 
-    @$http.get("/search/hot/0/#{keyword}")
+    @$http.get("/search/keyword/0/#{keyword}")
     .success((data, status, headers) =>
       @$log.info("Successfully retrieved query items - status #{status}")
       deferred.resolve(data)
