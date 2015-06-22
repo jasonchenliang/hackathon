@@ -2,7 +2,7 @@ class LoginService
   @headers = {'Accept': 'application/json', 'Content-Type': 'application/json'}
   @defaultConfig = { headers: @headers }
 
-  constructor: (@$log, @$http, @$q) ->
+  constructor: (@$log, @$http, @$q, @$rootScope) ->
     @$log.debug "constructing LoginService"
 
   submit: (@userId, @password) ->
@@ -19,5 +19,12 @@ class LoginService
       deferred.reject(data)
     )
     deferred.promise
+
+  setCredentials: (user) ->
+      @$rootScope.currentUser = user
+
+  clearCredentials: () ->
+      @$log.debug "clearCredentials"
+      @$rootScope.currentUser = {}
 
 servicesModule.service('LoginService', LoginService)
