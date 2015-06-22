@@ -11,7 +11,7 @@ class SearchCtrl
   getSearchCategory: () ->
     @$log.debug "getSearchCategory()"
 
-    if (@$routeParams.category)
+    if (@$routeParams.category != "0")
       @CategoryService.category(@$routeParams.category)
       .then(
         (data) =>
