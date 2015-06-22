@@ -50,7 +50,7 @@ class ProductService
     @$log.debug "categoryItemList()"
     deferred = @$q.defer()
 
-    @$http.get("/search/hot/#{cid}/0")
+    @$http.get("/search/category/#{cid}/0")
     .success((data, status, headers) =>
       @$log.info("Successfully retrieved category items - status #{status}")
       deferred.resolve(data)
