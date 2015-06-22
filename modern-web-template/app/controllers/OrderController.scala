@@ -2,7 +2,7 @@ package controllers
 
 import java.util.{Date, UUID}
 
-import models.Category
+import com.google.gson.Gson
 import org.slf4j.{LoggerFactory, Logger}
 import play.api.libs.json._
 import play.api.mvc.{Controller, Action}
@@ -79,6 +79,7 @@ class OrderController extends Controller with MongoController {
     val query = Json.obj("userId" -> userId)
     val cursor: Cursor[Order] = collectionOrder.
       find(query).
+      sort(Json.obj("createDate" -> -1)).
       // perform the query and get a cursor of JsObject
       cursor[Order]
     // gather all the JsObjects in a list
@@ -96,7 +97,7 @@ class OrderController extends Controller with MongoController {
   }
 
 
-//  def getOrder = Action.async(parse.json) {
+//  def findOrder = Action.async(parse.json) {
 //    request =>
 //      case class Input(userId: Option[String], orderId: Option[String])
 //      implicit val inputRead: Reads[Input] = (
