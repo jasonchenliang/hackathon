@@ -12,7 +12,8 @@ import play.api.mvc._
 import play.modules.reactivemongo.MongoController
 import play.modules.reactivemongo.json.collection.JSONCollection
 import reactivemongo.api.Cursor
-import reactivemongo.bson.BSONRegex
+import reactivemongo.bson.{BSONArray, BSONDocument, BSONRegex}
+import reactivemongo.core.commands.{RawCommand, Unwind, Aggregate}
 
 import scala.concurrent.Future
 
@@ -43,9 +44,9 @@ class ProductController extends Controller with MongoController {
           Ok(products(0))
       }
 
-//      val product1 = new Product(0, "Product A", 1, 10.5, "Some description", 10, null, "https://www.google.ca/images/srpr/logo11w.png", Calendar.getInstance().getTime())
-//      val gson = new Gson()
-//      Ok(gson.toJson(product1))
+    //      val product1 = new Product(0, "Product A", 1, 10.5, "Some description", 10, null, "https://www.google.ca/images/srpr/logo11w.png", Calendar.getInstance().getTime())
+    //      val gson = new Gson()
+    //      Ok(gson.toJson(product1))
   }
 
   def search(sortBy: String, keyword: String, categoryId: String) = Action.async {
@@ -71,6 +72,24 @@ class ProductController extends Controller with MongoController {
       }
       else if ("hot".equals(sortBy)) {
         cursor = collection.find(Json.obj()).sort(Json.obj("createDate" -> -1)).cursor[Product]
+        val command = BSONDocument(
+          "aggregate" -> "order",
+          "$pipeline" -> BSONArray(
+            BSONDocument("$unwind" -> "$orderItems"),
+            BSONDocument("$group" ->
+              BSONDocument("_id" -> "$orderItems.productId",
+                "total" -> BSONDocument("$sum" -> "$orderItems.qty"))),
+            BSONDocument("$sort" -> BSONDocument("total" -> -1))
+          )
+        )
+        val futureResult = db.command(RawCommand(command))
+        futureResult.map {
+          result =>
+            val productId = result.get("_id").toString()
+            cursor = collection.find(Json.obj("productId" -> productId)).cursor[Product]
+
+        }
+
       }
       else if ("sold".equals(sortBy)) {
         cursor = collection.find(Json.obj()).sort(Json.obj("createDate" -> -1)).cursor[Product] //TODO

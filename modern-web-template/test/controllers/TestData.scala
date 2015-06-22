@@ -255,7 +255,7 @@ class TestData extends Specification {
         result.header.status must equalTo(CREATED)
 
         request = FakeRequest.apply(POST, "/product").withJsonBody(Json.obj(
-          "productId" -> "aa6da295-18a0-48d9-af6e-ba35c8b4df7b", //UUID.randomUUID().toString(),
+          "productId" -> "aa6da295-18a0-48d9-af6e-ba35c8b4df99", //UUID.randomUUID().toString(),
           "name" -> "Zico Natural Coconut Water",
           "categoryId" -> "58763fbc-7408-476f-8d0d-258d7619a079",
           "price" -> 3.99,
