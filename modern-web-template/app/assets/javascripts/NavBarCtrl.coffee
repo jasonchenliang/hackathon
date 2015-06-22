@@ -1,10 +1,11 @@
 
 class NavBarCtrl
   @cart = []
-  constructor: (@$log, @CategoryService, @$rootScope) ->
+  constructor: (@$log, @$location, @CategoryService, @$rootScope) ->
     @$log.debug "constructing NavBar Controller"
     @categories = []
     @user = {}
+    @query = {}
     @getCategories()
 
   verifyUser: () ->
@@ -21,6 +22,13 @@ class NavBarCtrl
       (error) =>
         @$log.error "Unable to get categories: #{error}"
     )
+
+  search: () ->
+    @$log.debug "search()"
+    if (@query.category)
+      @$location.path('/search/' + @query.category + '/' + @query.keyword)
+    else
+      @$location.path('/search/0/' + @query.keyword)
 
   addToCart: (productId, productName, productPrice, productQty) ->
     @$log.debug "value of productId: #{productId}"

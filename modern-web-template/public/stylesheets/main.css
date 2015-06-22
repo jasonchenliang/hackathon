@@ -9,16 +9,22 @@ footer {
   text-align: center;
 }
 
+.navbar-form input.ng-invalid.ng-touched {
+  box-shadow: 0 0 2px 1px red;
+}
+
 .main-container{
   width:100%;
   min-height: 100%;
   height: auto;
 }
+
 div.main-container > .row {
   overflow-x:scroll;
   overflow-y:hidden;
   white-space:nowrap;
 }
+
 div.main-container > .row [class*="col-lg"], #main-content > .row [class*="col-md"], #main-content > .row [class*="col-sm"] {
   float:none;
   display:inline-block;
