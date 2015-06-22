@@ -24,8 +24,8 @@ div.main-container > .row [class*="col-lg"], #main-content > .row [class*="col-m
   display:inline-block;
   white-space:normal;
   vertical-align:top;
-}    text-align: center;
 }
+
 
 .product-container{
     margin-left: 5%;
@@ -68,3 +68,13 @@ div.main-container > .row [class*="col-lg"], #main-content > .row [class*="col-m
     background: rgb(28, 184, 65);
 }
 
+#quantity {
+  padding:5px;
+  width:35px;
+  border: 1px solid #555;
+  color: rgb(0,0,0);
+}
+
+ul > li{
+    display: inline-block;
+}

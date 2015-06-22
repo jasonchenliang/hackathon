@@ -1,9 +1,10 @@
-class NavBarCtrl
 
-  constructor: (@$log, @CategoryService) ->
+class NavBarCtrl
+  @cart = []
+  constructor: (@$log, @CategoryService, @$rootScope) ->
     @$log.debug "constructing NavBar Controller"
     @categories = []
-    @cart = []
+    @user = {}
     @getCategories()
 
   verifyUser: () ->
@@ -20,6 +21,36 @@ class NavBarCtrl
       (error) =>
         @$log.error "Unable to get categories: #{error}"
     )
+
+  addToCart: (productId, productName, productPrice, productQty) ->
+    @$log.debug "value of productId: #{productId}"
+    index = containsObject(productId,NavBarCtrl.cart)
+    if index == -1
+      NavBarCtrl.cart.push {id: productId, name: productName, price: productPrice, qty: productQty}
+      @$rootScope.cart = NavBarCtrl.cart
+    else
+      NavBarCtrl.cart[index].qty = parseInt(NavBarCtrl.cart[index].qty, 10) + parseInt(productQty, 10)
+
+    @$log.debug "cart: #{NavBarCtrl.cart[0]}"
+
+  containsObject = (objId, list) ->
+    i = 0
+    while i < list.length
+      if list[i].id == objId
+        return i
+      i++
+    return -1
+
+  changeProductQty: (productId, amount) ->
+    index = containsObject(productId, NavBarCtrl.cart)
+    if index != -1
+      NavBarCtrl.cart[index].qty = parseInt(NavBarCtrl.cart[index].qty, 10) + amount
+
+  removeProductFromCart: (productId) ->
+    index = containsObject(productId, NavBarCtrl.cart)
+    if index != -1
+      NavBarCtrl.cart.splice(index, 1)
+
 
 
 controllersModule.controller('NavBarCtrl', NavBarCtrl)

@@ -12,7 +12,9 @@
                     <h4>{{ctrl.product.data[0].qty}} left in stock</h4>
                 </td>
                 <td class="display-center">
-                    <button class="button-addToCart">Add To Cart</button>
+                    <button ng-click="ctrl.addToCart()" class="button-addToCart">Add To Cart</button>
+                    <label for="quantity">Qty: </label>
+                    <input min="1" max="{{ctrl.product.data[0].qty}}" type="number" id="quantity" name="quantity" value="1" />
                 </td>
             </tr>
         </table>

@@ -49,11 +49,15 @@
                 Cart <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
+                <li ng-repeat="product in cart">
+                  <a ng-href="/product/{{product.id}}"><b>{{product.name}}</b> | Qty: {{product.qty}}</a>
+                  <div ng-click="navbar.changeProductQty(product.id,1)">[+]</div>
+                  <div ng-click="navbar.changeProductQty(product.id,-1)">[-]</div>
+                  <div ng-click="navbar.removeProductFromCart(product.id)">[X]</div>
+                  <div>Price: {{product.price | currency}}</div>
+                </li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#/checkout">Checkout</a></li>
+                <li><a href="/checkout">Checkout</a></li>
               </ul>
             </li>
             <li><a href="#"><!-- placeholder -->Login</a></li>
@@ -67,7 +71,6 @@
       <div class="row">
         <div class="col-sm-12" ng-view></div>
       </div>
-
     </div>
 
   </body>
